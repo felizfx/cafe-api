@@ -23,7 +23,7 @@ const person = () => {
 	timer().stop();
 	setTimeout(() => {
 		timer().start();
-	}, 5000);
+	}, 1000);
 };
 
 const timer = () => {
@@ -31,7 +31,7 @@ const timer = () => {
 		start() {
 			nameInterval = setInterval(() => {
 				if(new Date().getHours() === 13) person();
-			}, 5000);
+			}, 1000);
 		},
 		stop() {
 			clearInterval(nameInterval);
