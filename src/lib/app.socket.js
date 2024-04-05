@@ -17,6 +17,7 @@ io.of("/").on("connection", (socket) => {
 
 const person = () => {
 	if(count === names.length - 1) count = 0;
+	console.log("função");
 	io.emit("new_name", names[count]);
 	count++;
 
@@ -30,7 +31,7 @@ const timer = () => {
 	return {
 		start() {
 			nameInterval = setInterval(() => {
-				console.log("checking hour");
+				console.log(Date().getHours());
 				if(new Date().getHours() === 13) person();
 			}, 1000);
 		},
