@@ -24,7 +24,7 @@ const person = () => {
 	timer().stop();
 	setTimeout(() => {
 		timer().start();
-	}, 60000);
+	}, 3600000);
 };
 
 const timer = () => {
