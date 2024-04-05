@@ -30,7 +30,7 @@ const timer = () => {
 	return {
 		start() {
 			nameInterval = setInterval(() => {
-				if(new Date().getHours() === 12) person();
+				if(new Date().getHours() === 13) person();
 			}, 60000);
 		},
 		stop() {

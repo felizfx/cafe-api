@@ -5,6 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "start": "node ./src/lib/app.socket.js",
     "dev": "nodemon ./src/lib/app.socket.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
