@@ -31,7 +31,7 @@ const timer = () => {
 	return {
 		start() {
 			nameInterval = setInterval(() => {
-				console.log(Date().getHours());
+				console.log(new Date().getHours());
 				if(new Date().getHours() === 13) person();
 			}, 1000);
 		},
