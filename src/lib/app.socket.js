@@ -12,7 +12,7 @@ let count = 0;
 var nameInterval;
 
 io.of("/").on("connection", (socket) => {
-	console.log("user connected, id:", socket.id);
+	socket.emit("currentName", names[count]);
 });
 
 const person = () => {
@@ -23,15 +23,15 @@ const person = () => {
 	timer().stop();
 	setTimeout(() => {
 		timer().start();
-	}, 1000);
+	}, 3600000);
 };
 
 const timer = () => {
 	return {
 		start() {
 			nameInterval = setInterval(() => {
-				if(new Date().getHours() === 18) person();
-			}, 5000);
+				if(new Date().getHours() === 12) person();
+			}, 60000);
 		},
 		stop() {
 			clearInterval(nameInterval);
