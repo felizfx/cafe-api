@@ -17,15 +17,14 @@ io.of("/").on("connection", (socket) => {
 });
 
 const person = () => {
-	if(count === names.length - 1) count = 0;
-	console.log("função");
+	if(count === names.length) count = 0;
 	io.emit("new_name", names[count]);
 	count++;
 
 	timer().stop();
 	setTimeout(() => {
 		timer().start();
-	}, 1000);
+	}, 60000);
 };
 
 const timer = () => {
@@ -33,9 +32,8 @@ const timer = () => {
 		start() {
 			nameInterval = setInterval(() => {
 				const timeInBrasilia = moment().tz("America/Sao_Paulo").format("HH");
-				console.log(timeInBrasilia);
 				if(timeInBrasilia === "14") person();
-			}, 1000);
+			}, 60000);
 		},
 		stop() {
 			clearInterval(nameInterval);
