@@ -30,6 +30,7 @@ const timer = () => {
 	return {
 		start() {
 			nameInterval = setInterval(() => {
+				console.log("checking hour");
 				if(new Date().getHours() === 13) person();
 			}, 1000);
 		},
