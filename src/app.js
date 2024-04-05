@@ -8,6 +8,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/api/healthcheck", (req, res) => {
+	console.log("requisição recebida");
 	res.status(200).json({ status: "ok" });
 });
 
