@@ -1,6 +1,7 @@
 import { Server } from "socket.io";
 import server from "../../server.js";
 import names from "./names.js";
+import moment from "moment-timezone";
 
 const io = new Server(server, {
 	cors: {
@@ -31,8 +32,9 @@ const timer = () => {
 	return {
 		start() {
 			nameInterval = setInterval(() => {
-				console.log(new Date().getHours());
-				if(new Date().getHours() === 13) person();
+				const timeInBrasilia = moment().tz("America/Sao_Paulo").format("HH");
+				console.log(timeInBrasilia);
+				if(timeInBrasilia === "14") person();
 			}, 1000);
 		},
 		stop() {
