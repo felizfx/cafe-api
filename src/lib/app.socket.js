@@ -43,7 +43,7 @@ const timer = () => {
 		start() {
 			nameInterval = setInterval(() => {
 				const timeInBrasilia = moment().tz("America/Sao_Paulo").format("HH");
-				if(timeInBrasilia === "14") person();
+				if(timeInBrasilia === "12") person();
 			}, 60000);
 		},
 		stop() {
