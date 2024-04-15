@@ -1,5 +1,7 @@
 import express from "express";
 import cors from "cors";
+import chalk from "chalk";
+import conn from "./config/db-connection.js";
 
 const app = express();
 
@@ -12,5 +14,11 @@ app.get("/api/healthcheck", (req, res) => {
 });
 
 app.use(cors());
+
+conn.then(() => {
+	console.log(chalk.green("[data_base] connection opened"));
+}).catch(err => {
+	console.log(chalk.red("[data_base] ERRO DE CONEXÃO: ") + err.message);
+});
 
 export default app;

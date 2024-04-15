@@ -1,3 +1,4 @@
+import "dotenv/config";
 import chalk from "chalk";
 import http from "http";
 import app from "./src/app.js";

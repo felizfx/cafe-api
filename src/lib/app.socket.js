@@ -1,9 +1,9 @@
 import { Server } from "socket.io";
 import server from "../../server.js";
-import names from "./names.js";
 import moment from "moment-timezone";
+import NameController from "../controller/NamesController.js";
 
-console.log(new Date().getDay());
+var nameInterval;
 
 const io = new Server(server, {
 	cors: {
@@ -11,19 +11,26 @@ const io = new Server(server, {
 	}
 });
 
-let count = 0;
-var nameInterval;
-
-io.of("/").on("connection", (socket) => {
-	socket.emit("currentName", names[count]);
+io.of("/").on("connection", async (socket) => {
+	socket.emit("currentName", await NameController.getCurrentName());
 });
 
-const person = () => {
+const newPerson = async () => {
+	const names = await NameController.getAllNames("id");
+	let currentIndex = names.findIndex(name => name.isToday);
+	if (currentIndex !== -1) {
+		names[currentIndex].isToday = false;
+		let nextIndex = currentIndex + 1 < names.length ? currentIndex + 1 : 0;
+		names[nextIndex].isToday = true;
+		NameController.updateNames(names);
+		return names[nextIndex];
+	}
+};
+
+const person = async () => {
 	if(((day) => day === 0 || day === 6)(new Date().getDay())) return;
 
-	if(count === names.length) count = 0;
-	io.emit("new_name", names[count]);
-	count++;
+	io.emit("new_name", await newPerson());
 
 	timer().stop();
 	setTimeout(() => {
@@ -36,7 +43,7 @@ const timer = () => {
 		start() {
 			nameInterval = setInterval(() => {
 				const timeInBrasilia = moment().tz("America/Sao_Paulo").format("HH");
-				if(timeInBrasilia === "12") person();
+				if(timeInBrasilia === "14") person();
 			}, 60000);
 		},
 		stop() {
