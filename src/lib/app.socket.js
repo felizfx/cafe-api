@@ -16,7 +16,7 @@ io.of("/").on("connection", async (socket) => {
 });
 
 const newPerson = async () => {
-	const names = await NameController.getAllNames("id");
+	const names = await NameController.getAllNames("name");
 	let currentIndex = names.findIndex(name => name.isToday);
 	if (currentIndex !== -1) {
 		names[currentIndex].isToday = false;

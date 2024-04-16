@@ -9,6 +9,10 @@ const nameModel = mongoose.Schema({
 		type: String,
 		required: [true, "person name must be provider"]
 	},
+	nickName: {
+		type: String,
+		required: [true, "person nick name must be provider"]
+	},
 	isToday: {
 		type: Boolean,
 		default: false
